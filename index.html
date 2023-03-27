@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function copyToClipboard(textbox) {
+        textbox.select();
+        document.execCommand("copy");
+      }
+  </script>
+</head>
+<body>
+    <div>
+        <P><<h2>Stack</h2>
+  <textarea id="textbox1" rows="25" cols="100">
+#include<stdio.h>
+int top=-1,a[5];
+int isEmpty()
+{
+    if(top==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int isFull()
+{
+    if(top==4)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+void push(int item)
+{
+    if(isFull())
+    {
+        printf("stack overflow");
+    }
+    else
+    {
+    top++;
+    a[top]=item;
+    }
+}
+void pop()
+{
+    if(isEmpty())
+    {
+        printf("stack underflow");
+    }
+    else
+    {
+         printf("The popped element is %d",a[top]);
+         top--;
+    }
+}
+void display()
+{
+    if(top>=0)
+    {
+    printf("Elements in the stack are:");
+    for(int i=top;i>=0;i--)
+    {
+        printf("\n%d",a[i]);
+    }
+    }
+    else
+    {
+        printf("stack is empty");
+    }
+}
+void count()
+{
+    printf("\nNumber of elements in the stack are: %d",top+1);
+}
+void search()
+{
+    int index;
+    if(top==-1)
+    {
+        printf("stack is empty");
+    }
+    else
+    {
+        printf("Enter index number u want to display:"); 
+        scanf("%d",&index);
+        printf("\nthe value in the %d index is %d",index,a[index]);
+    }
+}
+void change()
+{
+    int index,value;
+    if(top==-1)
+    {
+        printf("stack is empty");
+    }
+    else
+    {
+         printf("enter the index number and value which u want to change:");
+         scanf("%d%d",&index,&value);
+         a[index]=value;
+    }
+}
+int main()
+{
+    int ch,item,index,value;
+    do
+    {
+        printf("\n**** MENU ****");
+        printf("\n1:isEmpty()\n2:isFull()\n3:push()\n4:pop()\n5:count()\n6:display()\n\n7:search()\n8:change()");
+        printf("\nEnter Your Choice:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+           case 1: if(isEmpty())
+                       printf("stack is empty\n");
+                   else
+                       printf("stack is not empty\n");
+                   break;
+           case 2: if(isFull())
+                       printf("stack is full\n");
+                   else
+                       printf("stack is not full\n");
+                   break;
+           case 3: printf("enter an item to push:");
+                   scanf("%d",&item);
+                   push(item);
+                   break;
+           case 4: pop();
+                   break;
+           case 5: count();
+                   break;
+           case 6: display();
+                   break;
+           case 7: search();
+                   break;
+           case 8: change();
+                   break;
+           default: printf("choose correct option");
+        }
+    }while(ch!=0);
+}
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox1'))">Copy</button>
+    <br>
+  </div>
+<!------------------------------------------------------------------ -->
+  <div>
+        <P><<h2>Queue</h2>
+  <textarea id="textbox2" rows="25" cols="100">
+#include <stdio.h>
+int front =-1,i;
+int rear =-1;
+int q[5];
+int isEmpty()
+{
+    if (front == -1 && rear == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int isFull()
+{
+    if (rear == 4)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+void enqueue(int value)
+{
+    if (isFull())
+    {
+        printf("Queue is full");
+        return;
+    }
+    else if (isEmpty())
+    {
+        rear = 0;
+        front = 0;
+    }
+    else
+    {
+        rear++;
+    }
+    q[rear] = value;
+}
+void dequeue()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty");
+    }
+    else if (front == rear)
+    {
+        printf("dequeued value: %d", q[front]);
+        front =-1;
+        rear =-1;
+    }
+    else
+    {
+        printf("dequeued value: %d", q[front]);
+        front++;
+    }
+}
+int count()
+{
+    if (rear ==-1 && front ==-1)
+    {
+        return 0;
+    }
+    else
+    {
+        return (rear - front + 1);
+    }
+}
+void display()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("All valus in the queue are: ");
+        for (int i = front; i <= rear; i++)
+        {
+            printf("%d ", q[i]);
+        }
+    }
+}
+int main()
+{
+    int option, value;
+    do
+    {
+        printf("\n**** MENU ****");
+        printf("\n1.Enqueue()");
+        printf("\n2.Dequeue()");
+        printf("\n3.isEmpty()");
+        printf("\n4.isFull()");
+        printf("\n5.Count()");
+        printf("\n6.Display()");
+        printf("\nselect an option: if u want to exit press 0\n");
+        scanf("%d", &option);
+        switch (option)
+        {
+        case 0:
+            break;
+        case 1:
+            printf("Enter an item into the queue:");
+            scanf("%d", &value);
+            enqueue(value);
+            break;
+        case 2:
+            dequeue();
+            break;
+        case 3:
+            if (isEmpty())
+            {
+                printf("Queue is empty");
+            }
+            else
+            {
+                printf("Queue is not empty");
+            }
+            break;
+        case 4:
+            if (isFull())
+            {
+                printf("Queue is Full");
+            }
+            else
+            {
+                printf("Queue is not full");
+            }
+            break;
+        case 5:
+            printf("Number of items in the queue : %d", count());
+            break;
+        case 6:
+            display();
+            break;
+        default:
+            printf("Please select valid option");
+            break;
+        }
+    } while (option != 0);
+    return 0;
+}
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox2'))">Copy</button>
+    <br>
+  </div>
+
+  <!------------------------------------------------------ -->
+  <div>
+        <P><<h2>Bfs with variable input</h2>
+  <textarea id="textbox3" rows="25" cols="100">
+#include <stdio.h>
+int cost[10][10], i, j, k, n, m, queue[10], front, rear, v;
+int visited[10];
+void BFS()
+{
+    printf("enter the initial vertex");
+    scanf("%d", &v);
+    printf("visited vertices\n");
+
+    visited[v] = 1;
+    queue[++rear] = v;
+    while (front != rear)
+    {
+        v = queue[++front];
+        printf("%d", v);
+        for (j = 1; j <= n; j++)
+            if (!visited[j] && cost[v][j] == 1)
+            {
+                queue[++rear] = j;
+                visited[j] = 1;
+            }
+    }
+}
+int main()
+{
+    printf("enter the no of vertices");
+    scanf("%d", &n);
+    printf("enter the no of edges");
+    scanf("%d", &m);
+    front = -1;
+    rear = -1;
+    for (int i = 1; i <= 10; i++)
+        visited[i] = 0;
+    for (int i = 0; i < 10; i++)
+        for (j = 0; j < 10; j++)
+            cost[i][j] = 0;
+
+    printf("\nEnter EDGES");
+    for (k = 1; k <= m; k++)
+    {
+        scanf("%d%d", &i, &j);
+        cost[i][j] = 1;
+        cost[j][i] = 1;
+    }
+    BFS();
+}
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox3'))">Copy</button>
+    <br>
+  </div>
+
+<!------------------------------------------------------ -->
+  <div>
+        <P><<h2>Dfs with variable input</h2>
+  <textarea id="textbox4" rows="25" cols="100">
+#include <stdio.h>
+int cost[10][10], i, j, k, n, m, stack[10], top = -1, v;
+int visited[10];
+void DFS()
+{
+    printf("enter the initial vertex");
+    scanf("%d", &v);
+    printf("visited vertices\n");
+    stack[++top] = v;
+    while (top != -1)
+    {
+        v = stack[top--];
+        if (visited[v] == 0)
+        {
+            printf("%d", v);
+            visited[v] = 1;
+        }
+        else
+            continue;
+        for (j = n; j >= 1; j--)
+            if (!visited[j] && cost[v][j] == 1)
+                stack[++top] = j;
+    }
+}
+int main()
+{
+    printf("enter the no of vertices");
+    scanf("%d", &n);
+    printf("enter the no of edges");
+    scanf("%d", &m);
+    for (int i = 1; i <= 10; i++)
+    {
+        visited[i] = 0;
+    }
+    for (int i = 0; i < 10; i++)
+        for (j = 0; j < 10; j++)
+            cost[i][j] = 0;
+    printf("\nEnter EDGES");
+    for (k = 1; k <= m; k++)
+    {
+        scanf("%d%d", &i, &j);
+        cost[i][j] = 1;
+        cost[j][i] = 1;
+    }
+    DFS();
+}
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox4'))">Copy</button>
+    <br>
+  </div>
+	
+ <!------------------------------------------------------ -->
+  <div>
+        <P><<h2>BFS with predefined input (adjacency matrix)</h2>
+  <textarea id="textbox5" rows="25" cols="100">                    
+#include<stdio.h>
+int queue[100];
+int front=0,back=0;
+void push(int var)
+{
+    queue[back] = var;
+    back++;
+}
+void pop()
+{
+    queue[front] = 0;
+    front++;
+}
+int visited[7] = {0};
+int main()
+{
+    int N  = 6;
+    int graph[6][6] = {{0,1,1,0,0,0},
+                     {1,0,1,0,0,0},
+                     {1,1,0,1,1,0},
+                     {0,0,1,0,0,0},
+                     {0,0,1,0,0,1},
+                     {0,0,0,0,1,0}};
+    push(1);
+    visited[0] = 1;
+    while(front != back)
+    {
+        int current = queue[front];
+        printf("%d ", current);
+        pop();
+        for(int i=0;i<6;i++)
+        {
+            if((graph[current-1][i] == 1) && (visited[i] == 0))
+            {
+                visited[i] = 1; 
+                push(i+1);
+            }
+        }
+    }
+    return 0;
+}
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox5'))">Copy</button>
+    <br>
+  </div>
+	
+<!------------------------------------------------------ -->
+  <div>
+        <P><<h2>DFS with predefined input (adjacency matrix)</h2>
+  <textarea id="textbox6" rows="25" cols="100">    
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int visited[7] = {0,0,0,0,0,0,0};
+    int A [7][7] = {
+        {0,1,1,1,0,0,0},
+        {1,0,1,0,0,0,0},
+        {1,1,0,1,1,0,0},
+        {1,0,1,0,1,0,0},
+        {0,0,1,1,0,1,1},
+        {0,0,0,0,1,0,0}, 
+        {0,0,0,0,1,0,0} 
+    };
+ 
+void DFS(int i){
+    printf("%d ", i);
+    visited[i] = 1;
+    for (int j = 0; j < 7; j++)
+    {
+        if(A[i][j]==1 && !visited[j]){
+            DFS(j);
+        }
+    }
+}
+ 
+int main(){  
+    DFS(0); 
+    return 0;
+}
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox6'))">Copy</button>
+    <br>
+  </div>
+	
+  <!------------------------------------------------------ -->
+  
+</body>
+</html>
