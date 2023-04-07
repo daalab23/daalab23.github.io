@@ -507,6 +507,131 @@ int main(){
   </div>
 	
   <!------------------------------------------------------ -->
+	  
+  <div>
+        <P><<h2>Quick Sort</h2>
+  <textarea id="textbox7" rows="25" cols="100">    
+#include<stdio.h>
+int main()
+{
+    int i, n, list[20];
+    printf("enter range of elements");
+    scanf("%d",&n);
+    printf("enter elements\n");
+    for(i=0;i<n; i++)
+    {
+        scanf("%d",&list[i]);
+    }
+    QuickSort(list,0,n-1);
+    printf("after sorting: ");
+    for(i=0; i<n; i++)
+    {
+        printf("%d ",list[i]);
+    }
+}
+void QuickSort(int list[],int first,int last)
+{
+    int pivot,i,j,temp;
+  if(first < last)
+  {
+    pivot = first;
+    i = first;
+    j = last;
+    while(i < j)
+    {
+        while(list[i] <= list[pivot] && i < last)
+            i++;
+        while(list[j] > list[pivot])
+            j--;
+        if(i < j)
+        {
+            temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+    temp = list[pivot];
+    list[pivot] = list[j];
+    list[j] = temp;
+    QuickSort(list,first,j-1);
+    QuickSort(list,j+1,last);
+  }
+}
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox7'))">Copy</button>
+    <br>
+  </div>
+	  
+ <!------------------------------------------------------ -->
+	  
+  <div>
+        <P><<h2>Merge Sort</h2>
+  <textarea id="textbox8" rows="25" cols="100">    
+void mergesort(int a[], int lb, int mid, int ub)
+{
+    int i = lb, j = mid + 1, k = 0, b[50];
+    while (i <= mid && j <= ub)
+    {
+        if (a[i] < a[j])
+        {
+            b[k++] = a[i++];
+        }
+        else
+        {
+            b[k++] = a[j++];
+        }
+    }
+    while (i <= mid)
+    {
+        b[k++] = a[i++];
+    }
+    while (j <= ub)
+    {
+        b[k++] = a[j++];
+    }
+    for (k = 0; k <= ub - lb; k++)
+
+    {
+        a[k + lb] = b[k];
+    }
+}
+void merge(int a[], int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+        merge(a, low, mid);
+        merge(a, mid + 1, high);
+        mergesort(a, low, mid, high);
+    }
+}
+int main()
+{
+    int i, a[30], n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    printf("Enter elements:\n");
+    for(i=0;i<n;i++) {
+        scanf("%d", &a[i]);
+    }
+    printf("\nBefore sorting:");
+    for(i=0;i<n;i++) {
+        printf("%d ", a[i]);
+    }
+    merge(a,0,n-1);
+    printf("\nAfter sorting:");
+    for(i=0;i<n;i++) {
+        printf("%d ", a[i]);
+    }
+    return 0;
+}
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox8'))">Copy</button>
+    <br>
+  </div>
   
 </body>
 </html>
