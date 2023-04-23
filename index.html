@@ -6,11 +6,31 @@
         textbox.select();
         document.execCommand("copy");
       }
+      function scrollToTop() {
+	window.scrollTo({
+	 top: 0,
+	 left: 0,
+	 behavior: 'smooth'
+	});
+      }
   </script>
 </head>
 <body>
 	<p><h3>A website developed for DAA Lab 2023 (following the curriculum of OU)</h3></p>
         <p><h3>"By the students" and "For the students"</h3></p>
+        <div>
+		<!-- create the menu with links to different sections of the page -->
+		<a href="#textbox1">1. Stack</a> <br>
+		<a href="#textbox2">2. Queue</a> <br>
+		<a href="#textbox3">3. Bfs with variable input</a> <br>
+		<a href="#textbox4">4. Dfs with variable input</a> <br>
+		<a href="#textbox5">5. BFS with predefined input (adjacency matrix)</a> <br>
+		<a href="#textbox6">6. DFS with predefined input (adjacency matrix)</a> <br>
+		<a href="#textbox7">7. Quick Sort</a> <br>
+		<a href="#textbox8">8. Merge Sort</a> <br>
+		<a href="#textbox9">9. Knapsack using Brute Force</a> <br>
+		<a href="#textbox10">10. Knapsack using Greedy method</a> <br>
+	</div>
     <div>
         <P><<h2>Stack</h2>
   <textarea id="textbox1" rows="25" cols="100">
@@ -150,6 +170,7 @@ int main()
 }
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox1'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>	  
     <br>
   </div>
 <!------------------------------------------------------------------ -->
@@ -305,6 +326,7 @@ int main()
 }
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox2'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 
@@ -360,6 +382,7 @@ int main()
 }
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox3'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 
@@ -416,6 +439,7 @@ int main()
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox4'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 	
@@ -466,6 +490,7 @@ int main()
 }
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox5'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 	
@@ -505,6 +530,7 @@ int main(){
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox6'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 	
@@ -562,6 +588,7 @@ void QuickSort(int list[],int first,int last)
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox7'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
 	  
@@ -632,6 +659,7 @@ int main()
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox8'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>
   
@@ -672,6 +700,7 @@ int main() {
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox9'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>	  
 	  
@@ -751,6 +780,7 @@ int main()
 
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox10'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
     <br>
   </div>	  
 	  
