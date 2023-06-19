@@ -16,476 +16,94 @@
   </script>
 </head>
 <body>
-	<p><h3>A website developed for DAA Lab 2023 (following the curriculum of OU)</h3></p>
-        <p><h3>"By the students" and "For the students"</h3></p>
+	<p><h3>DAA Lab 2023 (according to the curriculum of OU for batch 2020-2024)</h3></p>
         <div>
 		<!-- create the menu with links to different sections of the page -->
-		<a href="#textbox1">1. Stack</a> <br>
-		<a href="#textbox2">2. Queue</a> <br>
-		<a href="#textbox3">3. Bfs with variable input</a> <br>
-		<a href="#textbox4">4. Dfs with variable input</a> <br>
-		<a href="#textbox5">5. BFS with predefined input (adjacency matrix)</a> <br>
-		<a href="#textbox6">6. DFS with predefined input (adjacency matrix)</a> <br>
-		<a href="#textbox7">7. Quick Sort</a> <br>
-		<a href="#textbox8">8. Merge Sort</a> <br>
-		<a href="#textbox9">9. Knapsack using Brute Force</a> <br>
-		<a href="#textbox10">10. Knapsack using Greedy method</a> <br>
+		<a href="#textbox5">1. Print all the nodes reachable from a given starting node in a digraph using BFS method 
+and Check whether a given graph is connected or not using DFS method.</a> <br>
+		<a href="#textbox7">2. Sort a given set of elements and determine the time required to sort the elements
+using Quick Sort</a> <br>
+		<a href="#textbox8">3. Sort a given set of elements and determine the time required to sort the elements
+using Merge Sort</a> <br>
+		<a href="#textbox9">4. Knapsack using Brute Force</a> <br>
+		<a href="#textbox10">5. Knapsack using Greedy method</a> <br>
+        <a href="#textbox11">6. Knapsack using Dynamic Programming</a> <br>
+        <a href="#textbox12">7.From a given vertex in a weighted connected graph, find shortest paths to other 
+vertices using Dijkstra's algorithm</a> <br>
+    <p><h5>*** More programs will be added in future ***</h5></p>
+    <a href="https://drive.google.com/drive/folders/1yq-I5Z71uWXyNvfWvA_1-NlKApuk6h2f" target="_blank">For outputs visit</a>
 	</div>
-    <div>
-        <P><<h2>Stack</h2>
-  <textarea id="textbox1" rows="25" cols="100">
-#include<stdio.h>
-int top=-1,a[5];
-int isEmpty()
-{
-    if(top==-1)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-int isFull()
-{
-    if(top==4)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-void push(int item)
-{
-    if(isFull())
-    {
-        printf("stack overflow");
-    }
-    else
-    {
-    top++;
-    a[top]=item;
-    }
-}
-void pop()
-{
-    if(isEmpty())
-    {
-        printf("stack underflow");
-    }
-    else
-    {
-         printf("The popped element is %d",a[top]);
-         top--;
-    }
-}
-void display()
-{
-    if(top>=0)
-    {
-    printf("Elements in the stack are:");
-    for(int i=top;i>=0;i--)
-    {
-        printf("\n%d",a[i]);
-    }
-    }
-    else
-    {
-        printf("stack is empty");
-    }
-}
-void count()
-{
-    printf("\nNumber of elements in the stack are: %d",top+1);
-}
-void search()
-{
-    int index;
-    if(top==-1)
-    {
-        printf("stack is empty");
-    }
-    else
-    {
-        printf("Enter index number u want to display:"); 
-        scanf("%d",&index);
-        printf("\nthe value in the %d index is %d",index,a[index]);
-    }
-}
-void change()
-{
-    int index,value;
-    if(top==-1)
-    {
-        printf("stack is empty");
-    }
-    else
-    {
-         printf("enter the index number and value which u want to change:");
-         scanf("%d%d",&index,&value);
-         a[index]=value;
-    }
-}
-int main()
-{
-    int ch,item,index,value;
-    do
-    {
-        printf("\n**** MENU ****");
-        printf("\n1:isEmpty()\n2:isFull()\n3:push()\n4:pop()\n5:count()\n6:display()\n\n7:search()\n8:change()");
-        printf("\nEnter Your Choice:");
-        scanf("%d",&ch);
-        switch(ch)
-        {
-           case 1: if(isEmpty())
-                       printf("stack is empty\n");
-                   else
-                       printf("stack is not empty\n");
-                   break;
-           case 2: if(isFull())
-                       printf("stack is full\n");
-                   else
-                       printf("stack is not full\n");
-                   break;
-           case 3: printf("enter an item to push:");
-                   scanf("%d",&item);
-                   push(item);
-                   break;
-           case 4: pop();
-                   break;
-           case 5: count();
-                   break;
-           case 6: display();
-                   break;
-           case 7: search();
-                   break;
-           case 8: change();
-                   break;
-           default: printf("choose correct option");
-        }
-    }while(ch!=0);
-}
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox1'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>	  
-    <br>
-  </div>
-<!------------------------------------------------------------------ -->
-  <div>
-        <P><<h2>Queue</h2>
-  <textarea id="textbox2" rows="25" cols="100">
-#include <stdio.h>
-int front =-1,i;
-int rear =-1;
-int q[5];
-int isEmpty()
-{
-    if (front == -1 && rear == -1)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-int isFull()
-{
-    if (rear == 4)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-void enqueue(int value)
-{
-    if (isFull())
-    {
-        printf("Queue is full");
-        return;
-    }
-    else if (isEmpty())
-    {
-        rear = 0;
-        front = 0;
-    }
-    else
-    {
-        rear++;
-    }
-    q[rear] = value;
-}
-void dequeue()
-{
-    if (isEmpty())
-    {
-        printf("Queue is empty");
-    }
-    else if (front == rear)
-    {
-        printf("dequeued value: %d", q[front]);
-        front =-1;
-        rear =-1;
-    }
-    else
-    {
-        printf("dequeued value: %d", q[front]);
-        front++;
-    }
-}
-int count()
-{
-    if (rear ==-1 && front ==-1)
-    {
-        return 0;
-    }
-    else
-    {
-        return (rear - front + 1);
-    }
-}
-void display()
-{
-    if (isEmpty())
-    {
-        printf("Queue is empty");
-    }
-    else
-    {
-        printf("All valus in the queue are: ");
-        for (int i = front; i <= rear; i++)
-        {
-            printf("%d ", q[i]);
-        }
-    }
-}
-int main()
-{
-    int option, value;
-    do
-    {
-        printf("\n**** MENU ****");
-        printf("\n1.Enqueue()");
-        printf("\n2.Dequeue()");
-        printf("\n3.isEmpty()");
-        printf("\n4.isFull()");
-        printf("\n5.Count()");
-        printf("\n6.Display()");
-        printf("\nselect an option: if u want to exit press 0\n");
-        scanf("%d", &option);
-        switch (option)
-        {
-        case 0:
-            break;
-        case 1:
-            printf("Enter an item into the queue:");
-            scanf("%d", &value);
-            enqueue(value);
-            break;
-        case 2:
-            dequeue();
-            break;
-        case 3:
-            if (isEmpty())
-            {
-                printf("Queue is empty");
-            }
-            else
-            {
-                printf("Queue is not empty");
-            }
-            break;
-        case 4:
-            if (isFull())
-            {
-                printf("Queue is Full");
-            }
-            else
-            {
-                printf("Queue is not full");
-            }
-            break;
-        case 5:
-            printf("Number of items in the queue : %d", count());
-            break;
-        case 6:
-            display();
-            break;
-        default:
-            printf("Please select valid option");
-            break;
-        }
-    } while (option != 0);
-    return 0;
-}
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox2'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
-    <br>
-  </div>
 
-  <!------------------------------------------------------ -->
-  <div>
-        <P><<h2>Bfs with variable input</h2>
-  <textarea id="textbox3" rows="25" cols="100">
-#include <stdio.h>
-int cost[10][10], i, j, k, n, m, queue[10], front, rear, v;
-int visited[10];
-void BFS()
-{
-    printf("enter the initial vertex");
-    scanf("%d", &v);
-    printf("visited vertices\n");
-
-    visited[v] = 1;
-    queue[++rear] = v;
-    while (front != rear)
-    {
-        v = queue[++front];
-        printf("%d", v);
-        for (j = 1; j <= n; j++)
-            if (!visited[j] && cost[v][j] == 1)
-            {
-                queue[++rear] = j;
-                visited[j] = 1;
-            }
-    }
-}
-int main()
-{
-    printf("enter the no of vertices");
-    scanf("%d", &n);
-    printf("enter the no of edges");
-    scanf("%d", &m);
-    front = -1;
-    rear = -1;
-    for (int i = 1; i <= 10; i++)
-        visited[i] = 0;
-    for (int i = 0; i < 10; i++)
-        for (j = 0; j < 10; j++)
-            cost[i][j] = 0;
-
-    printf("\nEnter EDGES");
-    for (k = 1; k <= m; k++)
-    {
-        scanf("%d%d", &i, &j);
-        cost[i][j] = 1;
-        cost[j][i] = 1;
-    }
-    BFS();
-}
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox3'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
-    <br>
-  </div>
-
-<!------------------------------------------------------ -->
-  <div>
-        <P><<h2>Dfs with variable input</h2>
-  <textarea id="textbox4" rows="25" cols="100">
-#include <stdio.h>
-int cost[10][10], i, j, k, n, m, stack[10], top = -1, v;
-int visited[10];
-void DFS()
-{
-    printf("enter the initial vertex");
-    scanf("%d", &v);
-    printf("visited vertices\n");
-    stack[++top] = v;
-    while (top != -1)
-    {
-        v = stack[top--];
-        if (visited[v] == 0)
-        {
-            printf("%d", v);
-            visited[v] = 1;
-        }
-        else
-            continue;
-        for (j = n; j >= 1; j--)
-            if (!visited[j] && cost[v][j] == 1)
-                stack[++top] = j;
-    }
-}
-int main()
-{
-    printf("enter the no of vertices");
-    scanf("%d", &n);
-    printf("enter the no of edges");
-    scanf("%d", &m);
-    for (int i = 1; i <= 10; i++)
-    {
-        visited[i] = 0;
-    }
-    for (int i = 0; i < 10; i++)
-        for (j = 0; j < 10; j++)
-            cost[i][j] = 0;
-    printf("\nEnter EDGES");
-    for (k = 1; k <= m; k++)
-    {
-        scanf("%d%d", &i, &j);
-        cost[i][j] = 1;
-        cost[j][i] = 1;
-    }
-    DFS();
-}
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox4'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
-    <br>
-  </div>
-	
  <!------------------------------------------------------ -->
   <div>
-        <P><<h2>BFS with predefined input (adjacency matrix)</h2>
+        <P><<h2>Print all the nodes reachable from a given starting node in a digraph using BFS method 
+and Check whether a given graph is connected or not using DFS method.</h2>
   <textarea id="textbox5" rows="25" cols="100">                    
-#include<stdio.h>
-int queue[100];
-int front=0,back=0;
-void push(int var)
-{
-    queue[back] = var;
-    back++;
-}
-void pop()
-{
-    queue[front] = 0;
-    front++;
-}
-int visited[7] = {0};
-int main()
-{
-    int N  = 6;
-    int graph[6][6] = {{0,1,1,0,0,0},
-                     {1,0,1,0,0,0},
-                     {1,1,0,1,1,0},
-                     {0,0,1,0,0,0},
-                     {0,0,1,0,0,1},
-                     {0,0,0,0,1,0}};
-    push(1);
-    visited[0] = 1;
-    while(front != back)
-    {
-        int current = queue[front];
-        printf("%d ", current);
-        pop();
-        for(int i=0;i<6;i++)
-        {
-            if((graph[current-1][i] == 1) && (visited[i] == 0))
-            {
-                visited[i] = 1; 
-                push(i+1);
+#include <stdio.h>
+
+int cost[20][20], queue[20], front=-1, rear=-1, n;
+int visited1[20], visited2[20];
+
+void BFS() {
+    int v;
+    printf("Enter the initial vertex: ");
+    scanf("%d", &v);
+    printf("Visited vertices:\n");
+    visited1[v] = 1;
+    queue[++rear] = v;
+    while (front != rear) {
+        v = queue[++front];
+        printf("%d ", v);
+        for (int j = 1; j <= n; j++) {
+            if (!visited1[j] && cost[v][j] == 1) {
+                queue[++rear] = j;
+                visited1[j] = 1;
             }
         }
     }
+}
+
+void DFS(int v) {
+    visited2[v] = 1;
+    for (int i = 1; i <= n; i++) {
+        if (cost[v][i] && !visited2[i]) {
+            printf("\n%d->%d", v, i);
+            DFS(i);
+        }
+    }
+}
+
+int main() {
+    int i, j, count=0;
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++) {
+        visited1[i] = 0;
+        visited2[i] = 0;
+        for (j = 1; j <= n; j++) {
+            cost[i][j] = 0;
+        }
+    }
+    printf("\nEnter the adjacency matrix:\n");
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            scanf("%d", &cost[i][j]);
+        }
+    }
+    
+    BFS();
+
+    DFS(1);
+    for (int i = 1; i <= n; i++) {
+        if (visited2[i]) {
+            count++;
+        }
+    }
+    if (count == n)
+        printf("\nGraph is connected");
+    else
+        printf("\nGraph is NOT connected");
+    
     return 0;
 }
   </textarea>
@@ -494,69 +112,14 @@ int main()
     <br>
   </div>
 	
-<!------------------------------------------------------ -->
-  <div>
-        <P><<h2>DFS with predefined input (adjacency matrix)</h2>
-  <textarea id="textbox6" rows="25" cols="100">    
-#include<stdio.h>
-#include<stdlib.h>
- 
-int visited[7] = {0,0,0,0,0,0,0};
-    int A [7][7] = {
-        {0,1,1,1,0,0,0},
-        {1,0,1,0,0,0,0},
-        {1,1,0,1,1,0,0},
-        {1,0,1,0,1,0,0},
-        {0,0,1,1,0,1,1},
-        {0,0,0,0,1,0,0}, 
-        {0,0,0,0,1,0,0} 
-    };
- 
-void DFS(int i){
-    printf("%d ", i);
-    visited[i] = 1;
-    for (int j = 0; j < 7; j++)
-    {
-        if(A[i][j]==1 && !visited[j]){
-            DFS(j);
-        }
-    }
-}
- 
-int main(){  
-    DFS(0); 
-    return 0;
-}
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox6'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
-    <br>
-  </div>
-	
   <!------------------------------------------------------ -->
 	  
   <div>
-        <P><<h2>Quick Sort</h2>
+        <P><<h2>Sort a given set of elements and determine the time required to sort the elements
+using Quick Sort</h2>
   <textarea id="textbox7" rows="25" cols="100">    
 #include<stdio.h>
-int main()
-{
-    int i, n, list[20];
-    printf("enter range of elements");
-    scanf("%d",&n);
-    printf("enter elements\n");
-    for(i=0;i<n; i++)
-    {
-        scanf("%d",&list[i]);
-    }
-    QuickSort(list,0,n-1);
-    printf("after sorting: ");
-    for(i=0; i<n; i++)
-    {
-        printf("%d ",list[i]);
-    }
-}
+#include <time.h>
 void QuickSort(int list[],int first,int last)
 {
     int pivot,i,j,temp;
@@ -586,6 +149,31 @@ void QuickSort(int list[],int first,int last)
   }
 }
 
+int main()
+{
+    int i, n, list[20];
+    clock_t st, et;
+    double ts;
+    printf("enter no of elements: ");
+    scanf("%d",&n);
+    printf("enter elements\n");
+    for(i=0;i<n; i++)
+    {
+        scanf("%d",&list[i]);
+    }
+    st = clock(); // Start the timer
+    QuickSort(list,0,n-1);
+    et = clock(); // Stop the timer
+    ts = (double)(et - st) / CLOCKS_PER_SEC;
+    printf("after sorting the array: ");
+    for(i=0; i<n; i++)
+    {
+        printf("%d ",list[i]);
+    }
+    printf("\nThe time taken is %f sec", ts);
+}
+
+
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox7'))">Copy</button>
   <button onclick="scrollToTop()">Go to Top</button>
@@ -595,66 +183,88 @@ void QuickSort(int list[],int first,int last)
  <!------------------------------------------------------ -->
 	  
   <div>
-        <P><<h2>Merge Sort</h2>
+        <P><<h2>Sort a given set of elements and determine the time required to sort the elements
+using Merge Sort</h2>
   <textarea id="textbox8" rows="25" cols="100">    
-void mergesort(int a[], int lb, int mid, int ub)
+#include <stdio.h>
+#include <time.h>
+void Merge(int a[], int low, int mid, int high)
 {
-    int i = lb, j = mid + 1, k = 0, b[50];
-    while (i <= mid && j <= ub)
+    // We have low to mid and mid+1 to high already sorted.
+    int i, j, k, temp[high - low + 1];
+    i = low;     // index of first element in first half
+    k = 0;       // index of temporary array temp
+    j = mid + 1; // index of first element in second half
+    // Merge the two parts into temp[].
+    while (i <= mid && j <= high)
     {
         if (a[i] < a[j])
         {
-            b[k++] = a[i++];
+            temp[k] = a[i];
+            k++;
+            i++;
         }
         else
         {
-            b[k++] = a[j++];
+            temp[k] = a[j];
+            k++;
+            j++;
         }
     }
+    // Insert all the remaining values from i to mid into temp[].
     while (i <= mid)
     {
-        b[k++] = a[i++];
+        temp[k] = a[i];
+        k++;
+        i++;
     }
-    while (j <= ub)
+    // Insert all the remaining values from j to high into temp[].
+    while (j <= high)
     {
-        b[k++] = a[j++];
+        temp[k] = a[j];
+        k++;
+        j++;
     }
-    for (k = 0; k <= ub - lb; k++)
-
+    // Assign sorted data stored in temp[] to a[].
+    for (i = low; i <= high; i++)
     {
-        a[k + lb] = b[k];
+        a[i] = temp[i - low];
     }
 }
-void merge(int a[], int low, int high)
+// A function to split array into two parts.
+void MergeSort(int a[], int low, int high)
 {
     int mid;
-    if (low < high)
+    if (low < high) // array is having more than one element
     {
         mid = (low + high) / 2;
-        merge(a, low, mid);
-        merge(a, mid + 1, high);
-        mergesort(a, low, mid, high);
+        // Split the data into two half.
+        MergeSort(a, low, mid); // applying mergesort on first half
+        MergeSort(a, mid + 1, high);
+        // Merge them to get sorted output
+        Merge(a, low, mid, high);
     }
 }
-int main()
+void main()
 {
-    int i, a[30], n;
-    printf("Enter the number of elements: ");
+    int i, n, a[50];
+    clock_t st, et;
+    double ts;
+    printf("Enter How many Numbers: ");
     scanf("%d", &n);
-    printf("Enter elements:\n");
+    printf("Enter elements in array:\n");
     for(i=0;i<n;i++) {
         scanf("%d", &a[i]);
     }
-    printf("\nBefore sorting:");
-    for(i=0;i<n;i++) {
+    st = clock(); // Start the timer
+    MergeSort(a, 0, n - 1);
+    et = clock(); // Stop the timer
+    ts = (double)(et - st) / CLOCKS_PER_SEC;
+    printf("\nAfter sorting the array:\n");
+    for (i = 0; i < n; i++) {
         printf("%d ", a[i]);
     }
-    merge(a,0,n-1);
-    printf("\nAfter sorting:");
-    for(i=0;i<n;i++) {
-        printf("%d ", a[i]);
-    }
-    return 0;
+    printf("\nThe time taken is %f sec", ts);
 }
 
   </textarea>
@@ -709,80 +319,218 @@ int main() {
   <div>
         <P><<h2>Knapsack using Greedy method</h2>
   <textarea id="textbox10" rows="25" cols="100">    
-#include <stdio.h>
-#include <stdlib.h>
-
-// Structure for an item which stores weight and
-// corresponding value of Item
-struct Item {
-    int value, weight;
-};
-
-// Comparison function to sort Item
-// according to value/weight ratio
-static int cmp(const void* a, const void* b)
-{
-    struct Item* item1 = (struct Item*)a;
-    struct Item* item2 = (struct Item*)b;
-
-    double r1 = (double)item1->value / (double)item1->weight;
-    double r2 = (double)item2->value / (double)item2->weight;
-
-    if (r1 < r2)
-        return 1;
-    else if (r1 > r2)
-        return -1;
-    else
-        return 0;
+# include<stdio.h>
+ 
+void knapsack(int n, float weight[], float profit[], float capacity) {
+   float x[20], tp = 0;
+   int i, j, u;
+   u = capacity;
+ 
+   for (i = 0; i < n; i++)
+      x[i] = 0.0;
+ 
+   for (i = 0; i < n; i++) {
+      if (weight[i] > u)
+         break;
+      else {
+         x[i] = 1.0;
+         tp = tp + profit[i];
+         u = u - weight[i];
+      }
+   }
+ 
+   if (i < n)
+      x[i] = u / weight[i];
+ 
+   tp = tp + (x[i] * profit[i]);
+ 
+   printf("\nThe result vector is:- ");
+   for (i = 0; i < n; i++)
+      printf("%f\t", x[i]);
+ 
+   printf("\nMaximum profit is:- %f", tp);
+ 
 }
-
-// Greedy function to solve problem
-int knapsack(int W, struct Item arr[], int n)
-{
-    // Sorting Item on basis of ratio
-    qsort(arr, n, sizeof(struct Item), cmp);
-
-    int cur_weight = 0;  // Current weight in knapsack
-    double cur_value = 0.0;  // Current value in knapsack
-
-    // Looping through all items
-    for (int i = 0; i < n; i++) {
-
-        // If adding Item won't overflow, add it completely
-        if (cur_weight + arr[i].weight <= W) {
-            cur_weight += arr[i].weight;
-            cur_value += arr[i].value;
-        }
-
-        // If we can't add current Item, add fractional part of it
-        else {
-            int remain = W - cur_weight;
-            cur_value += (double)arr[i].value * ((double)remain / (double)arr[i].weight);
-            break;
-        }
-    }
-
-    // Returning final value
-    return (int)cur_value;
+ 
+int main() {
+   float weight[20], profit[20], capacity;
+   int num, i, j;
+   float ratio[20], temp;
+ 
+   printf("\nEnter the no. of objects:- ");
+   scanf("%d", &num);
+ 
+   printf("\nEnter the wts and profits of each object:- ");
+   for (i = 0; i < num; i++) {
+      scanf("%f %f", &weight[i], &profit[i]);
+   }
+ 
+   printf("\nEnter the capacityacity of knapsack:- ");
+   scanf("%f", &capacity);
+ 
+   for (i = 0; i < num; i++) {
+      ratio[i] = profit[i] / weight[i];
+   }
+ 
+   for (i = 0; i < num; i++) {
+      for (j = i + 1; j < num; j++) {
+         if (ratio[i] < ratio[j]) {
+            temp = ratio[j];
+            ratio[j] = ratio[i];
+            ratio[i] = temp;
+ 
+            temp = weight[j];
+            weight[j] = weight[i];
+            weight[i] = temp;
+ 
+            temp = profit[j];
+            profit[j] = profit[i];
+            profit[i] = temp;
+         }
+      }
+   }
+ 
+   knapsack(num, weight, profit, capacity);
+   return(0);
 }
-
-// Driver code
-int main()
-{
-    int W = 50;
-    struct Item arr[] = { { 60, 10 }, { 100, 20 }, { 120, 30 } };
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    // Function call
-    printf("Maximum value in Knapsack = %d", knapsack(W, arr, n));
-    return 0;
-}
-
   </textarea>
   <button onclick="copyToClipboard(document.getElementById('textbox10'))">Copy</button>
   <button onclick="scrollToTop()">Go to Top</button>
     <br>
-  </div>	  
+  </div>
+
+  <!------------------------------------------------------ -->
+	  
+  <div>
+        <P><<h2>Knapsack using Dynamic Programming</h2>
+  <textarea id="textbox11" rows="25" cols="100">    
+#include <stdio.h>
+int w[10], p[10], v[10][10], n, i, j, cap, x[10] = {0};
+int max(int i, int j)
+{
+    return ((i > j) ? i : j);
+}
+int knap(int i, int j)
+{
+    int value;
+    if (v[i][j] < 0)
+    {
+        if (j < w[i])
+            value = knap(i - 1, j);
+        else
+            value = max(knap(i - 1, j), p[i] + knap(i - 1, j - w[i]));
+        v[i][j] = value;
+    }
+    return (v[i][j]);
+}
+void main()
+{
+    int profit, count = 0;
+    printf("\nEnter the number of elements\n");
+    scanf("%d", &n);
+    printf("Enter the profit and weights of the elements\n");
+    for (i = 1; i <= n; i++)
+    {
+        printf("For item no %d\n", i);
+        scanf("%d%d", &p[i], &w[i]);
+    }
+    printf("\nEnter the capacity \n");
+    scanf("%d", &cap);
+    for (i = 0; i <= n; i++)
+        for (j = 0; j <= cap; j++)
+            if ((i == 0) || (j == 0))
+                v[i][j] = 0;
+            else
+                v[i][j] = -1;
+    profit = knap(n, cap);
+    i = n;
+    j = cap;
+    while (j != 0 && i != 0)
+    {
+        if (v[i][j] != v[i - 1][j])
+        {
+            x[i] = 1;
+            j = j - w[i];
+            i--;
+        }
+        else
+            i--;
+    }
+    printf("Items included are\n");
+    printf("Sl.no\tweight\tprofit\n");
+    for (i = 1; i <= n; i++)
+        if (x[i])
+            printf("%d\t%d\t%d\n", ++count, w[i], p[i]);
+    printf("Total profit = %d\n", profit);
+}
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox11'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
+    <br>
+  </div>  	
+
+  <!------------------------------------------------------ -->
+	  
+  <div>
+        <P><<h2>From a given vertex in a weighted connected graph, find shortest paths to other 
+vertices using Dijkstra's algorithm</h2>
+  <textarea id="textbox12" rows="25" cols="100">    
+#include <stdio.h>
+#define infinity 999
+void dijkstra(int n, int v, int cost[10][10], int dist[100])
+{
+    int i, u, count, w, flag[10], min;
+    for (i = 1; i <= n; i++){
+        flag[i] = 0, dist[i] = cost[v][i];
+    }
+    count = 2;
+    while (count <= n)
+    {
+        min = 99;
+        for (w = 1; w <= n; w++){
+            if (dist[w] < min && !flag[w])
+                min = dist[w], u = w;
+        }
+        flag[u] = 1;
+        count++;
+        for (w = 1; w <= n; w++){
+            if ((dist[u] + cost[u][w] < dist[w]) && !flag[w])
+                dist[w] = dist[u] + cost[u][w];
+        }
+    }
+}
+void main()
+{
+    int n, v, i, j, cost[10][10], dist[10];
+    printf("\n Enter the number of nodes:");
+    scanf("%d", &n);
+    printf("\n Enter the cost matrix:\n");
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++)
+        {
+            scanf("%d", &cost[i][j]);
+            if (cost[i][j] == 0)
+                cost[i][j] = infinity;
+        }
+    }
+    printf("\n Enter the source Vertex:");
+    scanf("%d", &v);
+    dijkstra(n, v, cost, dist);
+    printf("\n Shortest path:\n");
+    for (i = 1; i <= n; i++){ 
+        if (i != v) {
+            printf("%d->%d,cost=%d\n", v, i, dist[i]);
+        }
+    }
+}
+
+
+  </textarea>
+  <button onclick="copyToClipboard(document.getElementById('textbox12'))">Copy</button>
+  <button onclick="scrollToTop()">Go to Top</button>
+    <br>
+  </div>  
 	  
 	  
 </body>
