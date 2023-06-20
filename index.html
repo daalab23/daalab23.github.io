@@ -1,44 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    /* CSS styles for mobile devices */
+    @media only screen and (max-width: 600px) {
+      .content {
+        width: 90%;
+        font-size: 16px;
+      }
+    }
+
+    .content textarea {
+      font-family: "Lucida Console", "Courier New", monospace;
+      font-size: 15px;
+      resize: both; 
+      border: 2px solid #ccc;
+      transition: border-color 0.3s ease;
+    }
+
+    .index-table {
+      display: table;
+      width: 95%;
+    }
+
+    .index-row {
+      display: table-row;
+    }
+
+    .index-cell {
+      display: table-cell;
+      padding: 5px;
+      font-weight: bold;
+    }
+
+    /* Increase button sizes */
+    .button {
+      font-size: 15px;
+      padding: 6px 12px;
+    }
+
+    img {
+      /*max-width: 100%; */
+      width: 400px;
+      height: 300px;
+    }
+  </style>
+
   <script>
-    function copyToClipboard(textbox) {
-        textbox.select();
-        document.execCommand("copy");
-      }
-      function scrollToTop() {
-	window.scrollTo({
-	 top: 0,
-	 left: 0,
-	 behavior: 'smooth'
-	});
-      }
+    function copyToClipboard(text) {
+      const tempInput = document.createElement("textarea");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
   </script>
 </head>
 <body>
-	<p><h3>DAA Lab 2023 (according to the curriculum of OU for batch 2020-2024)</h3></p>
-        <div>
-		<!-- create the menu with links to different sections of the page -->
-		<a href="#textbox5">1. Print all the nodes reachable from a given starting node in a digraph using BFS method 
-and Check whether a given graph is connected or not using DFS method.</a> <br>
-		<a href="#textbox7">2. Sort a given set of elements and determine the time required to sort the elements
-using Quick Sort</a> <br>
-		<a href="#textbox8">3. Sort a given set of elements and determine the time required to sort the elements
-using Merge Sort</a> <br>
-		<a href="#textbox9">4. Knapsack using Brute Force</a> <br>
-		<a href="#textbox10">5. Knapsack using Greedy method</a> <br>
-        <a href="#textbox11">6. Knapsack using Dynamic Programming</a> <br>
-        <a href="#textbox12">7.From a given vertex in a weighted connected graph, find shortest paths to other 
-vertices using Dijkstra's algorithm</a> <br>
-    <p><h5>*** More programs will be added in future ***</h5></p>
-    <a href="https://drive.google.com/drive/folders/1yq-I5Z71uWXyNvfWvA_1-NlKApuk6h2f" target="_blank">For outputs visit</a>
-	</div>
-
- <!------------------------------------------------------ -->
+  <h2>DAA Lab 2023 (according to the curriculum of OU for batch 2020-2024)</h2>
+   <!------------------------------- Index table --------------------------------->
+  <h3>Index:</h3>
+  <div class="index-table">
+    <div class="index-row">
+      <div class="index-cell">S.no</div>
+      <div class="index-cell">Program Name</div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">1.</div>
+      <div class="index-cell"><a href="#text1">Print all the nodes reachable from a given starting node in a digraph using BFS method 
+and Check whether a given graph is connected or not using DFS method.</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">2.</div>
+      <div class="index-cell"><a href="#text2">Sort a given set of elements and determine the time required to sort the elements
+using Quick Sort</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">3.</div>
+      <div class="index-cell"><a href="#text3">Sort a given set of elements and determine the time required to sort the elements
+using Merge Sort</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">4.</div>
+      <div class="index-cell"><a href="#text4"> Knapsack using Brute Force</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">5.</div>
+      <div class="index-cell"><a href="#text5">Knapsack using Greedy method</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">6.</div>
+      <div class="index-cell"><a href="#text6">Knapsack using Dynamic Programming</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">7.</div>
+      <div class="index-cell"><a href="#text7">From a given vertex in a weighted connected graph, find shortest paths to other 
+vertices using Dijkstra's algorithm</a></div>
+    </div>
+  </div>
+  <!------------------------------------------------------------------------------------->
   <div>
-        <P><<h2>Print all the nodes reachable from a given starting node in a digraph using BFS method 
+    <h4>*** NOTE: ***</h4>
+    <P>
+        1.  More programs will be added in the future.<br>
+        2.  you can resize the textboxes by using the toggle at bottom right of each textbox.
+    </P>
+  </div>
+
+
+
+
+
+
+  <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text1">Print all the nodes reachable from a given starting node in a digraph using BFS method 
 and Check whether a given graph is connected or not using DFS method.</h2>
-  <textarea id="textbox5" rows="25" cols="100">                    
+    <div class="content">
+      <textarea id="code1" rows="30" cols="60" spellcheck="false">
 #include <stdio.h>
 
 int cost[20][20], queue[20], front=-1, rear=-1, n;
@@ -106,18 +194,22 @@ int main() {
     
     return 0;
 }
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox5'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code1').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1QscOjJVf2MVa8YIVOjsbFItq_PlkWrYz">
     <br>
   </div>
-	
-  <!------------------------------------------------------ -->
-	  
+  <!----------------------------------------------------------------->
+
+  <!----------------------------------------------------------------->
   <div>
-        <P><<h2>Sort a given set of elements and determine the time required to sort the elements
+    <h32 id="text2">Sort a given set of elements and determine the time required to sort the elements
 using Quick Sort</h2>
-  <textarea id="textbox7" rows="25" cols="100">    
+    <div class="content">
+      <textarea id="code2" rows="30" cols="60" spellcheck="false">
 #include<stdio.h>
 #include <time.h>
 void QuickSort(int list[],int first,int last)
@@ -172,29 +264,31 @@ int main()
     }
     printf("\nThe time taken is %f sec", ts);
 }
-
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox7'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code2').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1t6X209ArFk0a5dkirawvPg6crSkOh5zL">
     <br>
   </div>
-	  
- <!------------------------------------------------------ -->
-	  
+  <!----------------------------------------------------------------->
+
+  <!----------------------------------------------------------------->
   <div>
-        <P><<h2>Sort a given set of elements and determine the time required to sort the elements
+    <h2 id="text3">Sort a given set of elements and determine the time required to sort the elements
 using Merge Sort</h2>
-  <textarea id="textbox8" rows="25" cols="100">    
+    <div class="content">
+      <textarea id="code3" rows="30" cols="60" spellcheck="false">
 #include <stdio.h>
 #include <time.h>
 void Merge(int a[], int low, int mid, int high)
 {
     // We have low to mid and mid+1 to high already sorted.
     int i, j, k, temp[high - low + 1];
-    i = low;     // index of first element in first half
-    k = 0;       // index of temporary array temp
-    j = mid + 1; // index of first element in second half
+    i = low;     
+    k = 0;      
+    j = mid + 1; 
     // Merge the two parts into temp[].
     while (i <= mid && j <= high)
     {
@@ -266,32 +360,35 @@ void main()
     }
     printf("\nThe time taken is %f sec", ts);
 }
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox8'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code3').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1xLonLz-JnhhvDVd7rPLYfJ-F8hAhR-Tk">
     <br>
   </div>
-  
-   <!------------------------------------------------------ -->
-	  
+  <!----------------------------------------------------------------->
+
+   <!----------------------------------------------------------------->
   <div>
-        <P><<h2>Knapsack using Brute Force</h2>
-  <textarea id="textbox9" rows="25" cols="100">    
+    <h2 id="text4">Knapsack using Brute Force</h2>
+    <div class="content">
+      <textarea id="code4" rows="30" cols="60" spellcheck="false">
 #include <stdio.h>
 int n, cap;
 int w[100], v[100];
 int max_value = 0;
 
 void knapsack(int i, int weight, int value) {
-    if (i == n) { // base case: no more items to consider
-        if (weight <= cap && value > max_value) { // check if this solution is better than previous ones
+    if (i == n) { 
+        if (weight <= cap && value > max_value) { 
             max_value = value; // update maximum value
         }
         return;
     }
-    knapsack(i + 1, weight + w[i], value + v[i]); // add current item to knapsack
-    knapsack(i + 1, weight, value); // do not add current item to knapsack
+    knapsack(i + 1, weight + w[i], value + v[i]); 
+    knapsack(i + 1, weight, value); 
 }
 
 int main() {
@@ -307,19 +404,22 @@ int main() {
     printf("Maximum value: %d\n", max_value);
     return 0;
 }
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox9'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code4').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
-  </div>	  
-	  
-  <!------------------------------------------------------ -->
-	  
+    <img src="https://drive.google.com/uc?export=view&id=1KGDJyV4RUWKmk8md1B6Rh-6e3ZOG2czV">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
+
+   <!----------------------------------------------------------------->
   <div>
-        <P><<h2>Knapsack using Greedy method</h2>
-  <textarea id="textbox10" rows="25" cols="100">    
-# include<stdio.h>
+    <h2 id="text5">Knapsack using Greedy method</h2>
+    <div class="content">
+      <textarea id="code5" rows="30" cols="60" spellcheck="false">
+#include<stdio.h>
  
 void knapsack(int n, float weight[], float profit[], float capacity) {
    float x[20], tp = 0;
@@ -393,17 +493,21 @@ int main() {
    knapsack(num, weight, profit, capacity);
    return(0);
 }
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox10'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code5').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1v8vZQq0AGGUX6UUEzIDW1PMx-IPjEzH6">
     <br>
   </div>
+  <!----------------------------------------------------------------->
 
-  <!------------------------------------------------------ -->
-	  
+   <!----------------------------------------------------------------->
   <div>
-        <P><<h2>Knapsack using Dynamic Programming</h2>
-  <textarea id="textbox11" rows="25" cols="100">    
+    <h2 id="text6">Knapsack using Dynamic Programming</h2>
+    <div class="content">
+      <textarea id="code6" rows="30" cols="60" spellcheck="false">
 #include <stdio.h>
 int w[10], p[10], v[10][10], n, i, j, cap, x[10] = {0};
 int max(int i, int j)
@@ -463,19 +567,22 @@ void main()
             printf("%d\t%d\t%d\n", ++count, w[i], p[i]);
     printf("Total profit = %d\n", profit);
 }
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox11'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code6').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
-  </div>  	
+    <img src="https://drive.google.com/uc?export=view&id=1O4Z5LnLgDN78oxZKBxRPllAgpXBKIHR8">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
 
-  <!------------------------------------------------------ -->
-	  
+   <!----------------------------------------------------------------->
   <div>
-        <P><<h2>From a given vertex in a weighted connected graph, find shortest paths to other 
+    <h2 id="text7">From a given vertex in a weighted connected graph, find shortest paths to other 
 vertices using Dijkstra's algorithm</h2>
-  <textarea id="textbox12" rows="25" cols="100">    
+    <div class="content">
+      <textarea id="code7" rows="30" cols="60" spellcheck="false">
 #include <stdio.h>
 #define infinity 999
 void dijkstra(int n, int v, int cost[10][10], int dist[100])
@@ -524,14 +631,16 @@ void main()
         }
     }
 }
-
-
-  </textarea>
-  <button onclick="copyToClipboard(document.getElementById('textbox12'))">Copy</button>
-  <button onclick="scrollToTop()">Go to Top</button>
+      </textarea>
+    </div>
+    <button class="button" onclick="copyToClipboard(document.getElementById('code7').value)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
-  </div>  
-	  
-	  
+    <img src="https://drive.google.com/uc?export=view&id=1v9-XJYGLCLHgsMyR9jv4bBej6EAXVeCd">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
+
+
 </body>
 </html>
