@@ -37,16 +37,48 @@
       width: 400px;
       height: 300px;
     }
+
+    #snippet-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .snippet {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      overflow-x: auto;
+    }
   </style>
 
   <script>
-    function copyToClipboard(text) {
-      const tempInput = document.createElement("textarea");
-      tempInput.value = text;
-      document.body.appendChild(tempInput);
-      tempInput.select();
+    function copySnippet(snippetId) {
+      var snippetText = document.getElementById("snippet-" + snippetId).innerText;
+      
+      // Create a textarea element to hold the snippet text
+      var tempTextarea = document.createElement("textarea");
+      tempTextarea.value = snippetText;
+      
+      // Append the textarea to the document
+      document.body.appendChild(tempTextarea);
+      
+      // Select the text within the textarea
+      tempTextarea.select();
+      tempTextarea.setSelectionRange(0, 99999); // For mobile devices
+      
+      // Copy the selected text to the clipboard
       document.execCommand("copy");
-      document.body.removeChild(tempInput);
+      
+      // Remove the temporary textarea from the document
+      document.body.removeChild(tempTextarea);
+      
+      // Provide visual feedback to the user
+      alert("Snippet copied to clipboard!");
     }
 
     function scrollToTop() {
@@ -119,77 +151,78 @@ vertices using Dijkstra's algorithm</a></div>
     <h2 id="text1">Print all the nodes reachable from a given starting node in a digraph using BFS method 
 and Check whether a given graph is connected or not using DFS method.</h2>
     <div class="content">
-      <textarea id="code1" rows="30" cols="60" spellcheck="false">
-#include <stdio.h>
+      <pre><code id="snippet-1">
+#include &lt;stdio.h&gt;
 
-int cost[20][20], queue[20], front=-1, rear=-1, n;
+int cost[20][20], queue[20], front&#x3D;-1, rear&#x3D;-1, n;
 int visited1[20], visited2[20];
 
 void BFS() {
     int v;
-    printf("Enter the initial vertex: ");
-    scanf("%d", &v);
-    printf("Visited vertices:\n");
-    visited1[v] = 1;
-    queue[++rear] = v;
-    while (front != rear) {
-        v = queue[++front];
-        printf("%d ", v);
-        for (int j = 1; j <= n; j++) {
-            if (!visited1[j] && cost[v][j] == 1) {
-                queue[++rear] = j;
-                visited1[j] = 1;
+    printf(&quot;Enter the initial vertex: &quot;);
+    scanf(&quot;%d&quot;, &amp;v);
+    printf(&quot;Visited vertices:\n&quot;);
+    visited1[v] &#x3D; 1;
+    queue[++rear] &#x3D; v;
+    while (front !&#x3D; rear) {
+        v &#x3D; queue[++front];
+        printf(&quot;%d &quot;, v);
+        for (int j &#x3D; 1; j &lt;&#x3D; n; j++) {
+            if (!visited1[j] &amp;&amp; cost[v][j] &#x3D;&#x3D; 1) {
+                queue[++rear] &#x3D; j;
+                visited1[j] &#x3D; 1;
             }
         }
     }
 }
 
 void DFS(int v) {
-    visited2[v] = 1;
-    for (int i = 1; i <= n; i++) {
-        if (cost[v][i] && !visited2[i]) {
-            printf("\n%d->%d", v, i);
+    visited2[v] &#x3D; 1;
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) {
+        if (cost[v][i] &amp;&amp; !visited2[i]) {
+            printf(&quot;\n%d-&gt;%d&quot;, v, i);
             DFS(i);
         }
     }
 }
 
 int main() {
-    int i, j, count=0;
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
-    for (i = 1; i <= n; i++) {
-        visited1[i] = 0;
-        visited2[i] = 0;
-        for (j = 1; j <= n; j++) {
-            cost[i][j] = 0;
+    int i, j, count&#x3D;0;
+    printf(&quot;Enter the number of vertices: &quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    for (i &#x3D; 1; i &lt;&#x3D; n; i++) {
+        visited1[i] &#x3D; 0;
+        visited2[i] &#x3D; 0;
+        for (j &#x3D; 1; j &lt;&#x3D; n; j++) {
+            cost[i][j] &#x3D; 0;
         }
     }
-    printf("\nEnter the adjacency matrix:\n");
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= n; j++) {
-            scanf("%d", &cost[i][j]);
+    printf(&quot;\nEnter the adjacency matrix:\n&quot;);
+    for (i &#x3D; 1; i &lt;&#x3D; n; i++) {
+        for (j &#x3D; 1; j &lt;&#x3D; n; j++) {
+            scanf(&quot;%d&quot;, &amp;cost[i][j]);
         }
     }
     
     BFS();
 
     DFS(1);
-    for (int i = 1; i <= n; i++) {
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) {
         if (visited2[i]) {
             count++;
         }
     }
-    if (count == n)
-        printf("\nGraph is connected");
+    if (count &#x3D;&#x3D; n)
+        printf(&quot;\nGraph is connected&quot;);
     else
-        printf("\nGraph is NOT connected");
+        printf(&quot;\nGraph is NOT connected&quot;);
     
     return 0;
 }
-      </textarea>
-    </div>
-    <button class="button" onclick="copyToClipboard(document.getElementById('code1').value)">Copy</button>
+      
+
+          </code></pre>
+      <button class="button" onclick="copySnippet(1)">Copy</button>
     <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
     <img src="https://drive.google.com/uc?export=view&id=1QscOjJVf2MVa8YIVOjsbFItq_PlkWrYz">
