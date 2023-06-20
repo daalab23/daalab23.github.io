@@ -123,6 +123,14 @@ using Merge Sort</a></div>
       <div class="index-cell"><a href="#text7">From a given vertex in a weighted connected graph, find shortest paths to other 
 vertices using Dijkstra's algorithm</a></div>
     </div>
+    <div class="index-row">
+      <div class="index-cell">8.</div>
+      <div class="index-cell"><a href="#text6">Find Minimum Cost Spanning Tree of a given undirected graph using Prim’s algorithm. </a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">9.</div>
+      <div class="index-cell"><a href="#text6">Find Minimum Cost Spanning Tree of a given undirected graph using Kruskal's algorithm.</a></div>
+    </div>
   </div>
   <!------------------------------------------------------------------------------------->
   <div>
@@ -140,8 +148,7 @@ vertices using Dijkstra's algorithm</a></div>
 
   <!----------------------------------------------------------------->
   <div>
-    <h2 id="text1">Print all the nodes reachable from a given starting node in a digraph using BFS method 
-and Check whether a given graph is connected or not using DFS method.</h2>
+    <h2 id="text1">Print all the nodes reachable from a given starting node in a digraph using BFS method and Check whether a given graph is connected or not using DFS method.</h2>
       <pre><code id="snippet-1">
 #include &lt;stdio.h&gt;
 
@@ -223,8 +230,7 @@ int main() {
 
   <!----------------------------------------------------------------->
   <div>
-    <h2 id="text2">Sort a given set of elements and determine the time required to sort the elements
-using Quick Sort</h2>
+    <h2 id="text2">Sort a given set of elements and determine the time required to sort the elements using Quick Sort</h2>
     <pre><code id="snippet-2">
 #include&lt;stdio.h&gt;
 #include &lt;time.h&gt;
@@ -291,8 +297,7 @@ int main()
 
   <!----------------------------------------------------------------->
   <div>
-    <h2 id="text3">Sort a given set of elements and determine the time required to sort the elements
-using Merge Sort</h2>
+    <h2 id="text3">Sort a given set of elements and determine the time required to sort the elements using Merge Sort</h2>
     <pre><code id="snippet-3">
 #include &lt;stdio.h&gt;
 #include &lt;time.h&gt;
@@ -574,8 +579,7 @@ int main()
 
    <!----------------------------------------------------------------->
   <div>
-    <h2 id="text7">From a given vertex in a weighted connected graph, find shortest paths to other 
-vertices using Dijkstra's algorithm</h2>
+    <h2 id="text7">From a given vertex in a weighted connected graph, find shortest paths to other vertices using Dijkstra's algorithm</h2>
      <pre><code id="snippet-7">
 #include &lt;stdio.h&gt;
 #define infinity 999
@@ -630,6 +634,131 @@ void main()
     <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
     <img src="https://drive.google.com/uc?export=view&id=1v9-XJYGLCLHgsMyR9jv4bBej6EAXVeCd">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
+
+  <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text7">Find Minimum Cost Spanning Tree of a given undirected graphusing Prim’s algorithm.</h2>
+     <pre><code id="snippet-8">
+#include &lt;stdio.h&gt;
+int a, b, u, v, n, i, j, ne &#x3D; 1;
+int visited[10] &#x3D; {0}, min, mincost &#x3D; 0, cost[10][10];
+void main()
+{
+   printf(&quot;\n Enter the number of nodes:&quot;);
+   scanf(&quot;%d&quot;, &amp;n);
+   printf(&quot;\n Enter the adjacency matrix:\n&quot;);
+   for (i &#x3D; 1; i &lt;&#x3D; n; i++)
+      for (j &#x3D; 1; j &lt;&#x3D; n; j++)
+      {
+         scanf(&quot;%d&quot;, &amp;cost[i][j]);
+         if (cost[i][j] &#x3D;&#x3D; 0)
+            cost[i][j] &#x3D; 999;
+      }
+   visited[1] &#x3D; 1;
+   printf(&quot;\n&quot;);
+   while (ne &lt; n)
+   {
+      for (i &#x3D; 1, min &#x3D; 999; i &lt;&#x3D; n; i++)
+         for (j &#x3D; 1; j &lt;&#x3D; n; j++)
+            if (cost[i][j] &lt; min)
+               if (visited[i] !&#x3D; 0)
+               {
+                  min &#x3D; cost[i][j];
+                  a &#x3D; u &#x3D; i;
+                  b &#x3D; v &#x3D; j;
+               }
+      if (visited[u] &#x3D;&#x3D; 0 || visited[v] &#x3D;&#x3D; 0)
+      {
+         printf(&quot;\n Edge %d:(%d %d) cost:%d&quot;, ne++, a, b, min);
+         mincost +&#x3D; min;
+         visited[b] &#x3D; 1;
+      }
+      cost[a][b] &#x3D; cost[b][a] &#x3D; 999;
+   }
+   printf(&quot;\n Minimun cost&#x3D;%d&quot;, mincost);
+}
+        </code></pre>
+      <button class="button" onclick="copySnippet(8)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1qZp8NxBYblOUJcOa0mGSzzmCCSGkke4-">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
+
+   <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text7">Find Minimum Cost Spanning Tree of a given undirected graphusing Krushkal’s algorithm.</h2>
+     <pre><code id="snippet-9">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int i, j, k, a, b, u, v, n, ne &#x3D; 1;
+int min, mincost &#x3D; 0, cost[9][9], parent[9];
+int find(int i)
+{
+   while (parent[i])
+      i &#x3D; parent[i];
+   return i;
+}
+int uni(int i, int j)
+{
+   if (i !&#x3D; j)
+   {
+      parent[j] &#x3D; i;
+      return 1;
+   }
+   return 0;
+}
+void main()
+{
+   printf(&quot;\n\n\tImplementation of Kruskal&#39;s algorithm\n\n&quot;);
+   printf(&quot;\nEnter the no. of vertices\n&quot;);
+   scanf(&quot;%d&quot;, &amp;n);
+   printf(&quot;\nEnter the cost adjacency matrix\n&quot;);
+   for (i &#x3D; 1; i &lt;&#x3D; n; i++)
+   {
+      for (j &#x3D; 1; j &lt;&#x3D; n; j++)
+      {
+         scanf(&quot;%d&quot;, &amp;cost[i][j]);
+         if (cost[i][j] &#x3D;&#x3D; 0)
+            cost[i][j] &#x3D; 999;
+      }
+   }
+   printf(&quot;\nThe edges of Minimum Cost Spanning Tree are\n\n&quot;);
+   while (ne &lt; n)
+   {
+      for (i &#x3D; 1, min &#x3D; 999; i &lt;&#x3D; n; i++)
+      {
+         for (j &#x3D; 1; j &lt;&#x3D; n; j++)
+         {
+            if (cost[i][j] &lt; min)
+            {
+               min &#x3D; cost[i][j];
+               a &#x3D; u &#x3D; i;
+               b &#x3D; v &#x3D; j;
+            }
+         }
+      }
+      u &#x3D; find(u);
+      v &#x3D; find(v);
+      if (uni(u, v))
+      {
+         printf(&quot;\n%d edge (%d,%d) &#x3D;%d\n&quot;, ne++, a, b, min);
+         mincost +&#x3D; min;
+      }
+      cost[a][b] &#x3D; cost[b][a] &#x3D; 999;
+   }
+   printf(&quot;\n\tMinimum cost &#x3D; %d\n&quot;, mincost);
+}
+
+        </code></pre>
+      <button class="button" onclick="copySnippet(9)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1HFTBE0DW80T0u8DEFx2rFYpC_MDVQzSY">
     <br>
   </div>
   <!----------------------------------------------------------------->
