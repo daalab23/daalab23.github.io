@@ -517,69 +517,57 @@ int main() {
     <h2 id="text6">Knapsack using Dynamic Programming</h2>
     <pre><code id="snippet-6">
 #include &lt;stdio.h&gt;
-int w[10], p[10], v[10][10], n, i, j, cap, x[10] &#x3D; {0};
-int max(int i, int j)
-{
-    return ((i &gt; j) ? i : j);
+ 
+int max(int a, int b) { 
+    return (a &gt; b)? a : b; 
 }
-int knap(int i, int j)
+int knapsack(int W, int wt[], int val[], int n)
 {
-    int value;
-    if (v[i][j] &lt; 0)
-    {
-        if (j &lt; w[i])
-            value &#x3D; knap(i - 1, j);
-        else
-            value &#x3D; max(knap(i - 1, j), p[i] + knap(i - 1, j - w[i]));
-        v[i][j] &#x3D; value;
-    }
-    return (v[i][j]);
+   int i, w;
+   int K[n+1][W+1];
+ 
+   for (i &#x3D; 0; i &lt;&#x3D; n; i++)
+   {
+       for (w &#x3D; 0; w &lt;&#x3D; W; w++)
+       {
+           if (i&#x3D;&#x3D;0 || w&#x3D;&#x3D;0)
+               K[i][w] &#x3D; 0;
+           else if (wt[i-1] &lt;&#x3D; w)
+                 K[i][w] &#x3D; max(val[i-1] + K[i-1][w-wt[i-1]],  K[i-1][w]);
+           else
+                 K[i][w] &#x3D; K[i-1][w];
+       }
+   }
+ 
+   return K[n][W];
 }
-void main()
+ 
+int main()
 {
-    int profit, count &#x3D; 0;
-    printf(&quot;\nEnter the number of elements\n&quot;);
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;Enter the profit and weights of the elements\n&quot;);
-    for (i &#x3D; 1; i &lt;&#x3D; n; i++)
-    {
-        printf(&quot;For item no %d\n&quot;, i);
-        scanf(&quot;%d%d&quot;, &amp;p[i], &amp;w[i]);
+    int obj, W;
+    printf(&quot;enter no of objects: &quot;);
+    scanf(&quot;%d&quot;,&amp;obj);
+    int val[obj];
+    int wt[obj];
+    printf(&quot;enter weights\n&quot;);
+    for(int i&#x3D;0;i&lt;obj;i++){
+        scanf(&quot;%d&quot;,&amp;wt[i]);
     }
-    printf(&quot;\nEnter the capacity \n&quot;);
-    scanf(&quot;%d&quot;, &amp;cap);
-    for (i &#x3D; 0; i &lt;&#x3D; n; i++)
-        for (j &#x3D; 0; j &lt;&#x3D; cap; j++)
-            if ((i &#x3D;&#x3D; 0) || (j &#x3D;&#x3D; 0))
-                v[i][j] &#x3D; 0;
-            else
-                v[i][j] &#x3D; -1;
-    profit &#x3D; knap(n, cap);
-    i &#x3D; n;
-    j &#x3D; cap;
-    while (j !&#x3D; 0 &amp;&amp; i !&#x3D; 0)
-    {
-        if (v[i][j] !&#x3D; v[i - 1][j])
-        {
-            x[i] &#x3D; 1;
-            j &#x3D; j - w[i];
-            i--;
-        }
-        else
-            i--;
+    printf(&quot;enter profits\n&quot;);
+    for(int i&#x3D;0;i&lt;obj;i++){
+        scanf(&quot;%d&quot;,&amp;val[i]);
     }
-    printf(&quot;Items included are\n&quot;);
-    printf(&quot;Sl.no\tweight\tprofit\n&quot;);
-    for (i &#x3D; 1; i &lt;&#x3D; n; i++)
-        if (x[i])
-            printf(&quot;%d\t%d\t%d\n&quot;, ++count, w[i], p[i]);
-    printf(&quot;Total profit &#x3D; %d\n&quot;, profit);
+    printf(&quot;enter max capacity: &quot;);
+    scanf(&quot;%d&quot;,&amp;W);
+    int n &#x3D; sizeof(val)&#x2F;sizeof(val[0]);
+    printf(&quot;\nTotal Profit &#x3D; %d&quot;, knapsack(W, wt, val, n));
+    return 0;
 }
         </code></pre>
       <button class="button" onclick="copySnippet(6)">Copy</button>
     <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
-    <img src="https://drive.google.com/uc?export=view&id=1O4Z5LnLgDN78oxZKBxRPllAgpXBKIHR8">
+    <img src="https://drive.google.com/uc?export=view&id=15_vpUjHBtT01IZCkV1NT-yFsFs6fMoyW">
     <br>
   </div>
   <!----------------------------------------------------------------->
