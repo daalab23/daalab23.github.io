@@ -132,6 +132,11 @@ vertices using Dijkstra's algorithm</a></div>
       <div class="index-cell"><a href="#text9">Find Minimum Cost Spanning Tree of a given undirected graph using Kruskal's algorithm.</a></div>
     </div>
   </div>
+  <div class="index-row">
+      <div class="index-cell">10.</div>
+      <div class="index-cell"><a href="#text10">Travelling SalesPerson</a></div>
+    </div>
+  </div>
   <!------------------------------------------------------------------------------------->
   <div>
     <h4>*** NOTE: ***</h4>
@@ -691,7 +696,7 @@ void main()
 
    <!----------------------------------------------------------------->
   <div>
-    <h2 id="text9">Find Minimum Cost Spanning Tree of a given undirected graphusing Krushkal’s algorithm.</h2>
+    <h2 id="text9">Travelling SalesPerson</h2>
      <pre><code id="snippet-9">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -756,6 +761,82 @@ void main()
 
         </code></pre>
       <button class="button" onclick="copySnippet(9)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    <br>
+    <img src="https://drive.google.com/uc?export=view&id=1HFTBE0DW80T0u8DEFx2rFYpC_MDVQzSY">
+    <br>
+  </div>
+  <!----------------------------------------------------------------->
+
+   <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text10">Find Minimum Cost Spanning Tree of a given undirected graphusing Krushkal’s algorithm.</h2>
+     <pre><code id="snippet-10">
+
+#include &lt;stdio.h&gt;
+
+int ary[10][10], completed[10], i, j, n, cost &#x3D; 0;
+
+void mincost(int city) {
+    int ncity;
+    completed[city] &#x3D; 1;
+
+    printf(&quot;%d---&gt;&quot;, city + 1);
+    ncity &#x3D; least(city);
+
+    if (ncity &#x3D;&#x3D; 999) {
+        ncity &#x3D; 0;
+        printf(&quot;%d&quot;, ncity + 1);
+        cost +&#x3D; ary[city][ncity];
+
+        return;
+    }
+
+    mincost(ncity);
+}
+
+int least(int c) {
+    int nc &#x3D; 999, min &#x3D; 999, kmin;
+
+    for (i &#x3D; 0; i &lt; n; i++) {
+        if ((ary[c][i] !&#x3D; 0) &amp;&amp; (completed[i] &#x3D;&#x3D; 0))
+            if (ary[c][i] + ary[i][c] &lt; min) {
+                min &#x3D; ary[c][i] + ary[i][0];
+                kmin &#x3D; ary[c][i];
+                nc &#x3D; i;
+            }
+    }
+
+    if (min !&#x3D; 999)
+        cost +&#x3D; kmin;
+
+    return nc;
+}
+
+int main() {
+    printf(&quot;Enter the number of villages: &quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+
+    printf(&quot;\nEnter the Cost Matrix\n&quot;);
+
+    for (i &#x3D; 0; i &lt; n; i++) {
+        printf(&quot;\nEnter Elements of Row: %d\n&quot;, i + 1);
+
+        for (j &#x3D; 0; j &lt; n; j++)
+            scanf(&quot;%d&quot;, &amp;ary[i][j]);
+
+        completed[i] &#x3D; 0;
+    }
+  
+    printf(&quot;\n\nThe Path is:\n&quot;);
+    mincost(0); &#x2F;&#x2F; passing 0 because starting vertex
+
+    printf(&quot;\n\nMinimum cost is %d\n&quot;, cost);
+
+    return 0;
+}
+        </code></pre>
+      <button class="button" onclick="copySnippet(10)">Copy</button>
     <button class="button" onclick="scrollToTop()">Go to Index</button>
     <br>
     <img src="https://drive.google.com/uc?export=view&id=1HFTBE0DW80T0u8DEFx2rFYpC_MDVQzSY">
