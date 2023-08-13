@@ -93,18 +93,15 @@
     </div>
     <div class="index-row">
       <div class="index-cell">1.</div>
-      <div class="index-cell"><a href="#text1">Print all the nodes reachable from a given starting node in a digraph using BFS method 
-and Check whether a given graph is connected or not using DFS method.</a></div>
+      <div class="index-cell"><a href="#text1">BFS and DFS</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">2.</div>
-      <div class="index-cell"><a href="#text2">Sort a given set of elements and determine the time required to sort the elements
-using Quick Sort</a></div>
+      <div class="index-cell"><a href="#text2">Quick Sort</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">3.</div>
-      <div class="index-cell"><a href="#text3">Sort a given set of elements and determine the time required to sort the elements
-using Merge Sort</a></div>
+      <div class="index-cell"><a href="#text3">Merge Sort</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">4.</div>
@@ -120,31 +117,40 @@ using Merge Sort</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">7.</div>
-      <div class="index-cell"><a href="#text7">From a given vertex in a weighted connected graph, find shortest paths to other 
-vertices using Dijkstra's algorithm</a></div>
+      <div class="index-cell"><a href="#text7">find shortest paths to other vertices using Dijkstra's algorithm</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">8.</div>
-      <div class="index-cell"><a href="#text8">Find Minimum Cost Spanning Tree of a given undirected graph using Prim’s algorithm. </a></div>
+      <div class="index-cell"><a href="#text8">Prim’s algorithm. </a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">9.</div>
-      <div class="index-cell"><a href="#text9">Find Minimum Cost Spanning Tree of a given undirected graph using Kruskal's algorithm.</a></div>
+      <div class="index-cell"><a href="#text9">Kruskal's algorithm.</a></div>
     </div>
     <div class="index-row">
       <div class="index-cell">10.</div>
       <div class="index-cell"><a href="#text10">Travelling SalesPerson</a></div>
     </div>
+    <div class="index-row">
+      <div class="index-cell">11.</div>
+      <div class="index-cell"><a href="#text11">N Queens</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">12.</div>
+      <div class="index-cell"><a href="#text12">Hamiltonian cycle</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">13.</div>
+      <div class="index-cell"><a href="#text13">Graph Coloring</a></div>
+    </div>
+    <div class="index-row">
+      <div class="index-cell">14.</div>
+      <div class="index-cell"><a href="#text14">Floyd Warshall</a></div>
+    </div>
   </div>
   </div>
   <!------------------------------------------------------------------------------------->
-  <div>
-    <h4>*** NOTE: ***</h4>
-    <P>
-        1.  More programs will be added in the future.<br>
-        2.  you can resize the textboxes by using the toggle at bottom right of each textbox. (only on Laptop or PC)
-    </P>
-  </div>
+  
 
 
 
@@ -772,7 +778,6 @@ void main()
   <div>
     <h2 id="text10">Travelling SalesPerson</h2>
      <pre><code id="snippet-10">
-
 #include &lt;stdio.h&gt;
 
 int ary[10][10], completed[10], i, j, n, cost &#x3D; 0;
@@ -799,7 +804,7 @@ int least(int c) {
     int nc &#x3D; 999, min &#x3D; 999, kmin;
 
     for (i &#x3D; 0; i &lt; n; i++) {
-        if ((ary[c][i] !&#x3D; 0) &amp;&amp; (completed[i] &#x3D;&#x3D; 0))
+        if (ary[c][i] &amp;&amp; !completed[i])
             if (ary[c][i] + ary[i][c] &lt; min) {
                 min &#x3D; ary[c][i] + ary[i][0];
                 kmin &#x3D; ary[c][i];
@@ -835,12 +840,259 @@ int main() {
 
     return 0;
 }
+        
         </code></pre>
       <button class="button" onclick="copySnippet(10)">Copy</button>
     <button class="button" onclick="scrollToTop()">Go to Index</button>
-    <br>
-    <img src="https://drive.google.com/uc?export=view&id=1HFTBE0DW80T0u8DEFx2rFYpC_MDVQzSY">
-    <br>
+    
+  </div>
+  <!----------------------------------------------------------------->
+
+
+     <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text11">N Queens</h2>
+     <pre><code id="snippet-11">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int a[30];
+
+int place(int pos) {
+    for (int i &#x3D; 1; i &lt; pos; i++) {
+        if (a[i] &#x3D;&#x3D; a[pos] || abs(a[i] - a[pos]) &#x3D;&#x3D; abs(i - pos)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void print_sol(int n) {
+    int count&#x3D;0;
+    count++;
+    printf(&quot;\n\nSolution #%d:\n&quot;, count);
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) {
+        for (int j &#x3D; 1; j &lt;&#x3D; n; j++) {
+            printf(a[i] &#x3D;&#x3D; j ? &quot;Q\t&quot; : &quot;*\t&quot;);
+        }
+        printf(&quot;\n&quot;);
+    }
+}
+
+void queen(int n, int k) {
+    if (k &gt; n) {
+        print_sol(n);
+        return;
+    }
+    
+    for (a[k] &#x3D; 1; a[k] &lt;&#x3D; n; a[k]++) {
+        if (place(k)) {
+            queen(n, k + 1);
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(&quot;Enter the number of Queens:\n&quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    queen(n, 1);
+    return 0;
+}       
+        </code></pre>
+      <button class="button" onclick="copySnippet(11)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    
+  </div>
+  <!----------------------------------------------------------------->
+
+       <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text12">Hamiltonian cycle</h2>
+     <pre><code id="snippet-12">
+#include &lt;stdio.h&gt;
+#define V 5
+
+int graph[V][V], path[V];
+
+int isSafe(int v, int pos, int path[V]) {
+    &#x2F;&#x2F; Check if it&#39;s safe to add vertex v to the path at position pos
+    return graph[path[pos - 1]][v] &amp;&amp; !path[v];
+}
+
+int hamiltonianCycleUtil(int pos) {
+    if (pos &#x3D;&#x3D; V) {
+        &#x2F;&#x2F; Check if the last vertex is connected to the starting vertex
+        return graph[path[pos - 1]][path[0]];
+    }
+
+    for (int v &#x3D; 0; v &lt; V; v++) {
+        if (isSafe(v, pos, path)) {
+            path[pos] &#x3D; v; &#x2F;&#x2F; Add vertex to the path
+            if (hamiltonianCycleUtil(pos + 1)) {
+                return 1; &#x2F;&#x2F; Continue exploring
+            }
+            path[pos] &#x3D; -1; &#x2F;&#x2F; Backtrack
+        }
+    }
+
+    return 0; &#x2F;&#x2F; No cycle found
+}
+
+int main() {
+    for (int i &#x3D; 0; i &lt; V; i++)
+        path[i] &#x3D; -1;
+    path[0] &#x3D; 0;
+
+    printf(&quot;Enter the adjacency matrix:\n&quot;);
+    for (int i &#x3D; 0; i &lt; V; i++) {
+        for (int j &#x3D; 0; j &lt; V; j++) {
+            scanf(&quot;%d&quot;, &amp;graph[i][j]);
+        }
+    }
+
+    if (hamiltonianCycleUtil(1)) {
+        printf(&quot;Hamiltonian Cycle exists:\n&quot;);
+        for (int i &#x3D; 0; i &lt; V; i++) {
+            printf(&quot;%d &quot;, path[i]);
+        }
+        printf(&quot;%d\n&quot;, path[0]);
+    } else {
+        printf(&quot;No Hamiltonian Cycle exists.\n&quot;);
+    }
+
+    return 0;
+}    
+        </code></pre>
+      <button class="button" onclick="copySnippet(12)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    
+  </div>
+  <!----------------------------------------------------------------->
+
+
+        <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text13">Graph Coloring</h2>
+     <pre><code id="snippet-13">
+#include &lt;stdio.h&gt;
+
+#define V 4
+
+int isSafe(int graph[V][V], int color[], int vertex, int c)
+{
+    for (int i &#x3D; 0; i &lt; V; i++) {
+        if (graph[vertex][i] &amp;&amp; color[i] &#x3D;&#x3D; c) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int graphColoring(int graph[V][V], int m, int color[], int vertex)
+{
+    if (vertex &#x3D;&#x3D; V) {
+        for (int i &#x3D; 0; i &lt; V; i++) {
+            printf(&quot; %d &quot;, color[i]);
+        }
+        printf(&quot;\n&quot;);
+    }
+
+    for (int c &#x3D; 1; c &lt;&#x3D; m; c++) {
+        if (isSafe(graph, color, vertex, c)) {
+            color[vertex] &#x3D; c;
+            if (graphColoring(graph, m, color, vertex + 1)) {
+                return 1;
+            }
+            color[vertex] &#x3D; 0;
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    int graph[V][V] &#x3D; {
+        {0, 1, 1, 1},
+        {1, 0, 1, 0},
+        {1, 1, 0, 1},
+        {1, 0, 1, 0},
+    };
+    int m &#x3D; 3; &#x2F;&#x2F; Number of colors
+
+    int color[V];
+    for (int i &#x3D; 0; i &lt; V; i++) {
+        color[i] &#x3D; 0;
+    }
+    
+    if (!graphColoring(graph, m, color, 0)) {
+        printf(&quot;Solution are\n&quot;);
+    }
+    return 0;
+} 
+        </code></pre>
+      <button class="button" onclick="copySnippet(13)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    
+  </div>
+  <!----------------------------------------------------------------->
+
+
+          <!----------------------------------------------------------------->
+  <div>
+    <h2 id="text14">Floyd Warshall</h2>
+     <pre><code id="snippet-14">
+
+#include &lt;stdio.h&gt;
+#define V 4
+#define INF 99999
+
+void floydWarshall(int dist[][V])
+{
+	int i, j, k;
+	for (k &#x3D; 0; k &lt; V; k++) {
+		for (i &#x3D; 0; i &lt; V; i++) {
+			for (j &#x3D; 0; j &lt; V; j++) {
+				if (dist[i][k] + dist[k][j] &lt; dist[i][j])
+					dist[i][j] &#x3D; dist[i][k] + dist[k][j];
+			}
+		}
+	}
+
+	printSolution(dist);
+}
+
+void printSolution(int dist[][V])
+{
+	printf(
+		&quot;The following matrix shows the shortest distances&quot;
+		&quot; between every pair of vertices \n&quot;);
+	for (int i &#x3D; 0; i &lt; V; i++) {
+		for (int j &#x3D; 0; j &lt; V; j++) {
+			if (dist[i][j] &#x3D;&#x3D; INF)
+				printf(&quot;%7s&quot;, &quot;INF&quot;);
+			else
+				printf(&quot;%7d&quot;, dist[i][j]);
+		}
+		printf(&quot;\n&quot;);
+	}
+}
+
+int main()
+{
+
+	int graph[V][V] &#x3D; { { 0, 5, INF, 10 },
+						{ INF, 0, 3, INF },
+						{ INF, INF, 0, 1 },
+						{ INF, INF, INF, 0 } };
+
+	floydWarshall(graph);
+	return 0;
+}
+        </code></pre>
+      <button class="button" onclick="copySnippet(14)">Copy</button>
+    <button class="button" onclick="scrollToTop()">Go to Index</button>
+    
   </div>
   <!----------------------------------------------------------------->
 
