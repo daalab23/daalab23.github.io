@@ -976,9 +976,7 @@ int main() {
     <h2 id="text13">Graph Coloring</h2>
      <pre><code id="snippet-13">
 #include &lt;stdio.h&gt;
-
 #define V 4
-
 int isSafe(int graph[V][V], int color[], int vertex, int c)
 {
     for (int i &#x3D; 0; i &lt; V; i++) {
@@ -1018,18 +1016,11 @@ int main()
         {1, 1, 0, 1},
         {1, 0, 1, 0},
     };
-    int m &#x3D; 3; &#x2F;&#x2F; Number of colors
-
-    int color[V];
-    for (int i &#x3D; 0; i &lt; V; i++) {
-        color[i] &#x3D; 0;
-    }
-    
-    if (!graphColoring(graph, m, color, 0)) {
-        printf(&quot;Solution are\n&quot;);
-    }
+    int m &#x3D; 3, color[V];
+    printf(&quot;Solution are\n&quot;);
+    graphColoring(graph, m, color, 0);
     return 0;
-} 
+}
         </code></pre>
       <button class="button" onclick="copySnippet(13)">Copy</button>
     <button class="button" onclick="scrollToTop()">Go to Index</button>
